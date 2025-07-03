@@ -251,3 +251,41 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 **Built with ❤️ for modern restaurants seeking a premium online presence.**
+
+# Color Prediction Game (91Club Clone)
+
+## Requirements
+* PHP 8+
+* MySQL 5.7+
+* Apache/Nginx
+
+## Setup
+1. Clone or upload all files to your server root.
+2. Import `database.sql` into a new MySQL database (e.g. `color_game`).
+3. Edit `config/db.php` with your DB credentials.
+4. Download local assets:
+   * Bootstrap 5: copy `bootstrap.min.css` and `bootstrap.bundle.min.js` into `assets/css` and `assets/js`.
+   * Tailwind CSS: compile or download and place `tailwind.min.css` in `assets/css`.
+   * Vue 3: download `vue.global.js` and save to `assets/js`.
+   * SweetAlert2: download `sweetalert2.min.js` + `sweetalert2.min.css` into `assets/js` / `assets/css`.
+5. **Cron Job**: set a server cron to run every minute:
+   ```
+   * * * * * php /path/to/cron/auto_result.php
+   ```
+6. Visit `/user/register.php` to create your first user.
+7. Admin login is at `/admin/login.php` with default credentials `admin` / `admin123`.
+
+## Folder Structure
+```
+/config     → DB & helper functions
+/api        → JSON endpoints
+/user       → End-user pages (Vue)
+/admin      → Admin dashboard
+/games      → Game components (extendable)
+/cron       → Automatic result handler
+/assets     → Static JS, CSS, images
+```
+
+---
+
+This is a minimal but functional starter. Extend features (deposits, withdraws, additional games) under the provided structure.

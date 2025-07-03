@@ -31,6 +31,14 @@ try {
         'pending_orders' => 0
     ];
 }
+
+require_once __DIR__ . '/../config/db.php';
+$users      = $pdo->query('SELECT COUNT(*) FROM users')->fetchColumn();
+$totalBal   = $pdo->query('SELECT SUM(balance) FROM users')->fetchColumn();
+$deposits   = $pdo->query('SELECT SUM(amount) FROM deposits WHERE status = "approved"')->fetchColumn();
+$withdraws  = $pdo->query('SELECT SUM(amount) FROM withdraws WHERE status = "approved"')->fetchColumn();
+$roundStmt  = $pdo->query('SELECT period_number FROM rounds ORDER BY id DESC LIMIT 1');
+$roundNum   = $roundStmt->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">

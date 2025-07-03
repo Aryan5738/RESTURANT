@@ -88,3 +88,59 @@ INSERT INTO dishes (name, description, price, image, visible) VALUES
 ('Caesar Salad', 'Fresh romaine with house-made dressing', 12.99, 'assets/dishes/salad.jpg', 1),
 ('Chocolate Soufflé', 'Warm chocolate soufflé with vanilla ice cream', 14.99, 'assets/dishes/souffle.jpg', 1),
 ('Lobster Bisque', 'Rich and creamy lobster soup', 18.99, 'assets/dishes/bisque.jpg', 1);
+
+-- MySQL schema for Color Prediction Game
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  uid VARCHAR(20) UNIQUE,
+  name VARCHAR(100),
+  phone VARCHAR(20) UNIQUE,
+  password VARCHAR(255),
+  balance DECIMAL(10,2) DEFAULT 0
+);
+
+CREATE TABLE deposits (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  txn_id VARCHAR(50),
+  amount DECIMAL(10,2),
+  status ENUM('pending','approved','rejected') DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE withdraws (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  upi_id VARCHAR(50),
+  account_no VARCHAR(30),
+  ifsc VARCHAR(20),
+  bank_name VARCHAR(100),
+  password VARCHAR(255),
+  amount DECIMAL(10,2),
+  status ENUM('pending','approved','rejected') DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE rounds (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  period_number INT,
+  result_color ENUM('RED','GREEN','VIOLET') NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE predictions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  round_id INT,
+  game_type VARCHAR(50),
+  color ENUM('RED','GREEN','VIOLET'),
+  amount DECIMAL(10,2),
+  status ENUM('pending','won','lost') DEFAULT 'pending'
+);
+
+CREATE TABLE notifications (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  message VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
