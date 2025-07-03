@@ -4,6 +4,7 @@ require_once __DIR__ . '/../games/color.php';
 require_once __DIR__ . '/../games/bigsmall.php';
 require_once __DIR__ . '/../games/dice.php';
 require_once __DIR__ . '/../games/headtail.php';
+require_once __DIR__ . '/../games/mines.php';
 
 // Latest round
 $stmt     = $pdo->query('SELECT * FROM rounds ORDER BY id DESC LIMIT 1');
@@ -12,7 +13,7 @@ $now      = time();
 
 if (!$current || strtotime($current['timestamp']) <= $now - 60) {
     if ($current) {
-        $gameTypes = ['color', 'bigsmall', 'dice', 'headtail'];
+        $gameTypes = ['color', 'bigsmall', 'dice', 'headtail', 'mines'];
 
         foreach ($gameTypes as $type) {
             switch ($type) {
@@ -29,6 +30,9 @@ if (!$current || strtotime($current['timestamp']) <= $now - 60) {
                     break;
                 case 'headtail':
                     $result = headtail_generate_result();
+                    break;
+                case 'mines':
+                    $result = mines_generate_result();
                     break;
                 default:
                     $result = null;
@@ -52,6 +56,9 @@ if (!$current || strtotime($current['timestamp']) <= $now - 60) {
                         break;
                     case 'headtail':
                         $multiplier = headtail_multiplier($pred['color'], $result);
+                        break;
+                    case 'mines':
+                        $multiplier = mines_multiplier($pred['color'], $result);
                         break;
                 }
                 if ($multiplier > 0) {

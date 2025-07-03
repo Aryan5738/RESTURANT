@@ -7,26 +7,15 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
-$users = [];
+require_once __DIR__ . '/../config/db.php';
 
-// Fetch users
-try {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, '../api/admin.php?action=users');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIE, session_name() . '=' . session_id());
-    
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    
-    if ($httpCode === 200) {
-        $data = json_decode($response, true);
-        $users = $data['users'] ?? [];
-    }
-} catch (Exception $e) {
-    $users = [];
+// update balance
+if(isset($_POST['user_id'])){
+    $stmt=$pdo->prepare('UPDATE users SET balance=? WHERE id=?');
+    $stmt->execute([$_POST['balance'],$_POST['user_id']]);
 }
+
+$users = $pdo->query('SELECT * FROM users ORDER BY id DESC')->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
