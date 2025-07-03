@@ -1,253 +1,317 @@
-# 🍽️ Premium Bistro - Modern Restaurant Website
+# � 91CLUB - Color Prediction Game
 
-A modern, premium restaurant website built with **React.js (via CDN)**, **Tailwind CSS**, **PHP**, and **MySQL** featuring a stunning glassmorphism design and comprehensive restaurant management system.
+A complete color prediction game website built with **Core PHP**, **MySQL**, **Vue.js**, and **Bootstrap 5**. Features multiple games including Color Prediction, Dice, Big/Small, and more.
 
-## ✨ Features
+## 🚀 Features
 
-### 🎨 User Interface (React + HTML)
-- **Modern Glassmorphism Design** with blurred cards and transparent effects
-- **Premium Fonts**: Poppins, Montserrat, Inter for elegant typography
-- **Fully Mobile Responsive** design that works on all devices
-- **Bottom Glassmorphism Navigation Bar** with smooth animations
-- **Hero Section** with floating animations and call-to-action
-- **Interactive Menu** with real-time cart management
-- **Smart Shopping Cart** with localStorage integration
-- **Secure Checkout Process** with order placement
-- **User Authentication** (Login/Register)
-- **User Profile** with order history
+### � **User Panel**
+- **Registration/Login** with auto-generated UID (91CLUB + 5 digits)
+- **Real-time Dashboard** with Vue.js reactivity
+- **Color Prediction Game** with RED/GREEN/VIOLET betting
+- **Multiple Games**: Dice, Big/Small, Head/Tail, Mines
+- **60-second rounds** with live countdown timer
+- **Deposit System** with UPI transaction ID
+- **Withdraw System** with bank details validation
+- **Game History** and transaction records
+- **Live Notifications** with auto-refresh
+- **Mobile-responsive** bottom navigation
+- **Real-time balance** updates
 
-### 🛠️ Admin Panel (PHP + Tailwind)
-- **Secure Admin Authentication**
-- **Dashboard** with comprehensive statistics
-- **Dish Management**: Add, edit, delete, and toggle visibility
-- **Order Management**: Accept, reject, and track orders
-- **User Management**: View customer information and analytics
-- **Settings Panel**: Configure restaurant information and branding
-- **Real-time Statistics**: Users, orders, revenue, and more
+### � **Admin Panel**
+- **Secure Admin Login** with encrypted passwords
+- **Complete Dashboard** with statistics
+- **User Management** with balance editing
+- **Deposit/Withdraw** approval system
+- **Game Control** with manual result setting
+- **Round History** and bet monitoring
+- **Notification Management**
+- **Real-time monitoring** of all activities
 
-### 💾 Backend (PHP + MySQL)
-- **RESTful API Architecture** with proper error handling
-- **Secure Authentication** with password hashing and JWT-like tokens
-- **Database Relationships** with foreign key constraints
-- **Transaction Management** for order processing
-- **CORS Support** for frontend-backend communication
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React.js (via CDN), HTML5, CSS3, JavaScript ES6+
-- **Styling**: Tailwind CSS (via CDN), Custom CSS for glassmorphism effects
-- **Backend**: PHP 7.4+, cURL for API communication
-- **Database**: MySQL 5.7+
-- **Icons**: Font Awesome 6.4.0
-- **Fonts**: Google Fonts (Poppins, Montserrat, Inter)
+### ⚙️ **Technical Features**
+- **Auto Result Generation** via cron job
+- **Real-time API** endpoints
+- **Secure Authentication** with PHP sessions
+- **Database Transactions** for bet consistency
+- **Mobile-first Design** with Tailwind CSS
+- **Vue.js Components** for interactive UI
+- **SweetAlert2** for beautiful notifications
+- **Bootstrap 5** for responsive layouts
 
 ## 📁 Project Structure
 
 ```
-restaurant-website/
-├── index.html              # Main user interface (React)
-├── database.sql            # Database schema and sample data
-├── README.md              # Project documentation
-├── config/
-│   └── database.php       # Database configuration
-├── api/                   # Backend API endpoints
-│   ├── auth.php          # Authentication API
-│   ├── dishes.php        # Menu management API
-│   ├── cart.php          # Shopping cart API
-│   ├── orders.php        # Order management API
-│   └── admin.php         # Admin panel API
-├── admin/                 # Admin panel pages
-│   ├── index.php         # Admin login
-│   ├── dashboard.php     # Admin dashboard
-│   ├── dishes.php        # Dish management
-│   ├── orders.php        # Order management
-│   ├── users.php         # User management
-│   └── settings.php      # Restaurant settings
-├── uploads/              # File upload directory
-└── assets/               # Static assets
-    ├── css/
-    ├── js/
-    └── dishes/           # Dish images
+├── admin/                  # Admin panel
+│   ├── login.php          # Admin login
+│   ├── dashboard.php      # Admin dashboard
+│   └── logout.php         # Admin logout
+├── api/                   # API endpoints
+│   ├── place_bet.php      # Bet placement
+│   ├── get_game_data.php  # Game data fetching
+│   ├── get_notification.php # Notifications
+│   └── admin/             # Admin APIs
+│       ├── get_users.php  # User management
+│       ├── get_rounds.php # Round history
+│       └── set_result.php # Manual result setting
+├── config/                # Configuration
+│   ├── db.php            # Database connection
+│   └── functions.php     # Helper functions
+├── cron/                 # Cron jobs
+│   └── auto_result.php   # Auto result generation
+├── games/                # Game components
+│   └── dice.php          # Dice game
+├── user/                 # User panel
+│   ├── login.php         # User login
+│   ├── register.php      # User registration
+│   ├── dashboard.php     # Main dashboard
+│   └── deposit.php       # Deposit page
+├── color_prediction_database.sql # Database schema
+└── README.md             # This file
 ```
 
-## 🚀 Installation & Setup
+## �️ Database Tables
 
-### Prerequisites
-- **Web Server** (Apache/Nginx)
-- **PHP 7.4** or higher
-- **MySQL 5.7** or higher
-- **Modern Web Browser**
+- **users** - User accounts with UID, balance, credentials
+- **deposits** - Deposit requests with UPI transaction IDs
+- **withdraws** - Withdrawal requests with bank details
+- **predictions** - User bets with game type and amounts
+- **rounds** - Game rounds with results and timing
+- **notifications** - System-wide notifications
+- **admin_users** - Admin accounts for management
 
-### Step 1: Download & Extract
-```bash
-# Clone or download the project
-git clone <repository-url>
-cd restaurant-website
-```
+## 🛠️ Installation & Setup
 
-### Step 2: Database Setup
-1. Create a MySQL database named `restaurant_db`
-2. Import the database schema:
-```sql
-mysql -u your_username -p restaurant_db < database.sql
-```
+### **Local Development (XAMPP/WAMP)**
 
-### Step 3: Configure Database Connection
-Edit `config/database.php` and update the database credentials:
-```php
-private $host = 'localhost';
-private $db_name = 'restaurant_db';
-private $username = 'your_mysql_username';
-private $password = 'your_mysql_password';
-```
+1. **Download & Extract**
+   ```bash
+   # Download the project files
+   # Extract to htdocs/color-prediction-game/
+   ```
 
-### Step 4: Set Permissions
-```bash
-# Make uploads directory writable
-chmod 755 uploads/
-chmod 755 assets/
-```
+2. **Database Setup**
+   ```sql
+   # Import the database
+   mysql -u root -p < color_prediction_database.sql
+   ```
 
-### Step 5: Access the Website
-- **Customer Interface**: `http://your-domain.com/index.html`
-- **Admin Panel**: `http://your-domain.com/admin/`
+3. **Configure Database**
+   ```php
+   // Edit config/db.php
+   define('DB_HOST', 'localhost');
+   define('DB_USER', 'root');
+   define('DB_PASS', '');
+   define('DB_NAME', 'color_prediction_game');
+   ```
 
-## 🔐 Default Login Credentials
+4. **Setup Cron Job**
+   ```bash
+   # Add to crontab (Linux/Mac)
+   * * * * * /usr/bin/php /path/to/project/cron/auto_result.php
+   
+   # Windows: Use Task Scheduler to run every minute
+   ```
 
-### Admin Panel
+5. **Access the Application**
+   - **User Panel**: `http://localhost/color-prediction-game/user/login.php`
+   - **Admin Panel**: `http://localhost/color-prediction-game/admin/login.php`
+
+### **cPanel Hosting**
+
+1. **Upload Files**
+   ```bash
+   # Upload all files to public_html/
+   # Or create subdirectory: public_html/game/
+   ```
+
+2. **Create Database**
+   ```sql
+   # Use cPanel MySQL Database Wizard
+   # Import color_prediction_database.sql
+   ```
+
+3. **Update Configuration**
+   ```php
+   // Update config/db.php with cPanel database details
+   define('DB_HOST', 'localhost');
+   define('DB_USER', 'cpanel_username_dbuser');
+   define('DB_PASS', 'your_db_password');
+   define('DB_NAME', 'cpanel_username_dbname');
+   ```
+
+4. **Setup Cron Job**
+   ```bash
+   # In cPanel Cron Jobs, add:
+   * * * * * /usr/local/bin/php /home/username/public_html/cron/auto_result.php
+   ```
+
+## 🎮 Default Login Credentials
+
+### **Admin Access**
 - **Username**: `admin`
 - **Password**: `admin123`
 
-## 🎯 User Guide
+### **Test User**
+- Create new account via registration
+- UID will be auto-generated (e.g., 91CLUB12345)
 
-### For Customers
-1. **Browse Menu**: View available dishes with prices and descriptions
-2. **Add to Cart**: Click "Add to Cart" on any dish
-3. **Manage Cart**: Adjust quantities or remove items
-4. **Register/Login**: Create an account or login to existing account
-5. **Checkout**: Enter delivery address and place order
-6. **Track Orders**: View order history and status in profile
+## 🎯 Game Rules
 
-### For Administrators
-1. **Login**: Access admin panel with credentials
-2. **Dashboard**: View overall statistics and system status
-3. **Manage Dishes**: Add new dishes, edit existing ones, toggle visibility
-4. **Process Orders**: Accept/reject orders, mark as delivered
-5. **View Customers**: Monitor customer registrations and activity
-6. **Configure Settings**: Update restaurant name, logo, and theme
+### **Color Prediction**
+- **RED/GREEN**: 1.5x payout (50% profit)
+- **VIOLET**: 5x payout (400% profit)
+- **Duration**: 60 seconds per round
 
-## 📱 Mobile Responsiveness
+### **Dice Game**
+- **BIG (4-6)**: 1.8x payout
+- **SMALL (1-3)**: 1.8x payout
+- **EXACT NUMBER**: 5x payout
 
-The website is fully responsive and optimized for:
-- **Desktop** (1920px+)
-- **Laptop** (1024px-1919px)
-- **Tablet** (768px-1023px)
-- **Mobile** (320px-767px)
-
-## 🎨 Design Features
-
-### Glassmorphism Effects
-- **Transparent backgrounds** with backdrop blur
-- **Subtle borders** and shadows
-- **Layered depth** for modern aesthetics
-- **Smooth animations** and transitions
-
-### Color Scheme
-- **Primary**: Purple to Blue gradients (#667eea to #764ba2)
-- **Accents**: Green, Yellow, Red for status indicators
-- **Text**: White on dark backgrounds for contrast
-- **Glassmorphism**: Semi-transparent whites and blacks
+### **Big/Small**
+- Similar to dice but with different mechanics
+- **Duration**: 60 seconds per round
 
 ## 🔧 API Endpoints
 
-### Authentication
-- `POST /api/auth.php?action=register` - User registration
-- `POST /api/auth.php?action=login` - User login
-- `GET /api/auth.php?action=profile` - Get user profile
+### **User APIs**
+- `POST /api/place_bet.php` - Place a bet
+- `GET /api/get_game_data.php` - Get current game data
+- `GET /api/get_time_remaining.php` - Get round timer
+- `GET /api/get_notification.php` - Get latest notification
 
-### Menu
-- `GET /api/dishes.php` - Get visible dishes
+### **Admin APIs**
+- `GET /api/admin/get_users.php` - Get all users
+- `GET /api/admin/get_rounds.php` - Get round history
+- `POST /api/admin/set_result.php` - Set manual result
+- `POST /api/admin/update_balance.php` - Update user balance
 
-### Cart
-- `GET /api/cart.php` - Get cart items
-- `POST /api/cart.php` - Add item to cart
-- `PUT /api/cart.php` - Update cart item
-- `DELETE /api/cart.php` - Remove from cart
+## 💰 Payment Integration
 
-### Orders
-- `GET /api/orders.php` - Get user orders
-- `POST /api/orders.php` - Create new order
+### **Deposit Process**
+1. User enters amount and UPI transaction ID
+2. Admin approves/rejects in admin panel
+3. Balance automatically updated on approval
 
-### Admin
-- `POST /api/admin.php?action=login` - Admin login
-- `GET /api/admin.php?action=dashboard` - Dashboard stats
-- `GET /api/admin.php?action=dishes` - All dishes
-- `GET /api/admin.php?action=orders` - All orders
-- `GET /api/admin.php?action=users` - All users
+### **Withdraw Process**
+1. User enters bank details and amount
+2. System validates balance and password
+3. Admin processes the withdrawal
+4. Balance deducted after approval
 
-## 🔒 Security Features
+## 🚀 Advanced Features
 
-- **Password Hashing** using PHP's `password_hash()`
-- **SQL Injection Protection** with prepared statements
-- **XSS Prevention** with input sanitization
-- **CSRF Protection** with token validation
-- **Session Management** for admin authentication
-- **Input Validation** on both frontend and backend
+### **Real-time Updates**
+- Live balance updates
+- Auto-refreshing game data
+- Real-time notifications
+- Live round countdown
 
-## 🎯 Performance Optimizations
+### **Security Features**
+- Password hashing with PHP `password_hash()`
+- SQL injection prevention with prepared statements
+- Session-based authentication
+- Input sanitization and validation
 
-- **CDN Usage** for external libraries
-- **Lightweight Assets** with optimized images
-- **Efficient Database Queries** with proper indexing
-- **Caching Headers** for static assets
-- **Minified CSS/JS** for faster loading
+### **Mobile Optimization**
+- Responsive design with Tailwind CSS
+- Touch-friendly interface
+- Bottom navigation like 91Club
+- Optimized for all screen sizes
 
-## 🚀 Future Enhancements
+## 🔄 Cron Job Details
 
-- **Real-time Notifications** for order updates
-- **Payment Gateway Integration** (Stripe, PayPal)
-- **Email Notifications** for orders and registration
-- **Multi-language Support** (i18n)
-- **Advanced Analytics** and reporting
-- **Mobile App** development
-- **Social Media Integration**
-- **Review and Rating System**
+The `auto_result.php` script should run every minute to:
+- Check for expired rounds (60+ seconds)
+- Generate random results
+- Calculate winnings and update balances
+- Create new rounds automatically
+- Clean up old round data
+
+## 🎨 Customization
+
+### **Colors & Branding**
+- Edit CSS variables in each file
+- Update gradient backgrounds
+- Change logo and app name
+- Modify color schemes
+
+### **Game Logic**
+- Adjust payout rates in `config/functions.php`
+- Modify round duration (currently 60 seconds)
+- Add new game types in `/games/` folder
+- Customize betting amounts
+
+### **UI/UX**
+- All styles use Tailwind CSS classes
+- Vue.js components for interactivity
+- Bootstrap 5 for responsive layouts
+- SweetAlert2 for notifications
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### **Common Issues**
 
-1. **Database Connection Error**
-   - Check database credentials in `config/database.php`
-   - Ensure MySQL service is running
-   - Verify database name exists
+1. **Database Connection Failed**
+   ```php
+   // Check config/db.php credentials
+   // Verify MySQL service is running
+   // Check database permissions
+   ```
 
-2. **Permission Denied**
-   - Check file permissions for uploads directory
-   - Ensure web server has write access
+2. **Cron Job Not Working**
+   ```bash
+   # Test manually first:
+   php /path/to/cron/auto_result.php
+   
+   # Check cron logs:
+   tail -f /var/log/cron
+   ```
 
-3. **API Errors**
-   - Check PHP error logs
-   - Verify PHP version compatibility
-   - Enable error reporting for debugging
+3. **Session Issues**
+   ```php
+   // Check PHP session configuration
+   // Verify session.save_path is writable
+   // Clear browser cookies
+   ```
 
-4. **Styling Issues**
-   - Clear browser cache
-   - Check internet connection for CDN resources
-   - Verify Tailwind CSS CDN link
+4. **API Errors**
+   ```javascript
+   // Check browser console for errors
+   // Verify API endpoints are accessible
+   // Check PHP error logs
+   ```
 
 ## 📞 Support
 
-For technical support or questions:
-- Check the troubleshooting section
-- Review PHP error logs
-- Verify database connectivity
-- Ensure all dependencies are properly installed
+For technical support or customization:
+- Check PHP error logs: `/var/log/php_errors.log`
+- Review browser console for JavaScript errors
+- Verify database connectivity and permissions
+- Test API endpoints individually
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open-source and available for educational and commercial use.
+
+## 🔮 Future Enhancements
+
+- **Payment Gateway Integration** (Razorpay, PayU)
+- **Mobile App** with React Native
+- **Advanced Analytics** and reporting
+- **Multi-language Support**
+- **Social Features** and leaderboards
+- **Additional Games** (Roulette, Blackjack)
+- **Referral System** with rewards
+- **KYC Verification** system
 
 ---
 
-**Built with ❤️ for modern restaurants seeking a premium online presence.**
+## 🚀 **Get Started Now!**
+
+1. **Setup Database** → Import SQL file
+2. **Configure Settings** → Update config/db.php
+3. **Setup Cron Job** → Auto result generation
+4. **Login as Admin** → admin/admin123
+5. **Create Test Account** → Register new user
+6. **Start Playing!** → Place your first bet
+
+**Happy Gaming! 🎮**
